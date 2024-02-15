@@ -13,6 +13,9 @@ from .serializers import BarSerializer, AtraccionListSerializer, AtraccionDetail
 from .serializers import ActorSerializer, PeliculaDetailSerializer, PeliculaListSerializer
 from .serializers import IngredienteListSerializer, IngredienteDetalleSerializer
 
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+
 
 class BarViewSet(viewsets.ModelViewSet):
     queryset = Bar.objects.all()
@@ -41,6 +44,8 @@ class AtraccionViewSet(viewsets.ModelViewSet):
 class ActorViewSet(viewsets.ModelViewSet):
     queryset = Actor.objects.all()
     serializer_class = ActorSerializer
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
 class PeliculaViewSet(viewsets.ModelViewSet):

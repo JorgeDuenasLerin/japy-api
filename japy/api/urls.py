@@ -15,5 +15,5 @@ router.register(r'resultado', ResultadoViewSet)
 from . import views
 
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path('', include(router.urls)),
 ]

@@ -20,6 +20,6 @@ from rest_framework.authtoken import views as viewsfr
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('pmdm/', include('api.urls')),
+    path('api/', include('api.urls')),
     path('api-token-auth/', viewsfr.obtain_auth_token),
 ]
