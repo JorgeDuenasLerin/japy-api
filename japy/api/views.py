@@ -10,7 +10,7 @@ import django_filters.rest_framework
 from .models import Bar, Atraccion, Comentario
 from .models import Actor, Pelicula, Ingrediente, Resultado
 from .serializers import BarSerializer, AtraccionListSerializer, AtraccionDetailSerializer, ComentarioSerializer, ResultadoListSerializer
-from .serializers import ActorSerializer, PeliculaDetailSerializer, PeliculaListSerializer
+from .serializers import ActorSerializer, PeliculaDetailSerializer, PeliculaListSerializer, PeliculaListRelatedSerializer
 from .serializers import IngredienteListSerializer, IngredienteDetalleSerializer
 
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
@@ -57,6 +57,11 @@ class PeliculaViewSet(viewsets.ModelViewSet):
             return PeliculaDetailSerializer
         else: 
             return PeliculaListSerializer
+
+
+class PeliculaRelatedViewSet(viewsets.ModelViewSet):
+    queryset = Pelicula.objects.all()
+    serializer_class = PeliculaListRelatedSerializer
 
 
 class IngredienteViewSet(viewsets.ModelViewSet):

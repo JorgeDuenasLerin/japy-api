@@ -13,7 +13,7 @@ class ComentarioSerializer(serializers.HyperlinkedModelSerializer):
 
    class Meta:
         model = Comentario
-        fields = '__all__'
+        fields = ['texto']
 
 
 class AtraccionDetailSerializer(serializers.HyperlinkedModelSerializer):
@@ -21,10 +21,12 @@ class AtraccionDetailSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Atraccion
-        fields = '__all__'
+        fields = ['nombre','descripcion','ocupantes', 'comentarios']
 
 
 class AtraccionListSerializer(serializers.HyperlinkedModelSerializer):
+    #comentarios=ComentarioSerializer(many=True)
+
     class Meta:
         model = Atraccion
         fields = '__all__'
@@ -51,6 +53,13 @@ class PeliculaListSerializer(serializers.HyperlinkedModelSerializer):
         model = Pelicula
         fields = '__all__'
 
+
+class PeliculaListRelatedSerializer(serializers.ModelSerializer):
+    actores = ActorSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Pelicula
+        fields = ['nombre','descripcion', 'estrellas', 'actores']
 
 class HyperlinkedModelSerializerWithId(serializers.HyperlinkedModelSerializer):
     """Extend the HyperlinkedModelSerializer to add IDs as well for the best of
