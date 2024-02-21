@@ -18,3 +18,7 @@ pip install django-filter
 ```
 python manage.py runserver 0.0.0.0:8000
 ```
+
+## Usuarios
+
+admin:admin
