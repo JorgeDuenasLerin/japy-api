@@ -7,11 +7,11 @@ from rest_framework import viewsets
 from rest_framework import filters
 import django_filters.rest_framework
 
-from .models import Bar, Atraccion, Comentario
+from .models import Bar, Atraccion, Comentario, Criptomoneda, Estafado
 from .models import Actor, Pelicula, Ingrediente, Resultado
 from .serializers import BarSerializer, AtraccionListSerializer, AtraccionDetailSerializer, ComentarioSerializer, ResultadoListSerializer
 from .serializers import ActorSerializer, PeliculaDetailSerializer, PeliculaListSerializer, PeliculaListRelatedSerializer
-from .serializers import IngredienteListSerializer, IngredienteDetalleSerializer
+from .serializers import IngredienteListSerializer, IngredienteDetalleSerializer, CriptoSerializer, EstafadoSerializer
 
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -84,3 +84,13 @@ class IngredienteViewSet(viewsets.ModelViewSet):
 class ResultadoViewSet(viewsets.ModelViewSet):
     queryset = Resultado.objects.all()
     serializer_class = ResultadoListSerializer
+
+
+class EstafadoViewSet(viewsets.ModelViewSet):
+    queryset = Estafado.objects.all()
+    serializer_class = EstafadoSerializer
+
+
+class CriptoViewSet(viewsets.ModelViewSet):
+    queryset = Criptomoneda.objects.all()
+    serializer_class = CriptoSerializer

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Atraccion, Bar, Comentario, Actor, Pelicula, Ingrediente, Resultado
+from .models import Atraccion, Bar, Comentario, Actor, Pelicula, Ingrediente, Resultado, Estafado, Criptomoneda, Estafado
 
 
 class BarSerializer(serializers.HyperlinkedModelSerializer):
@@ -87,3 +87,19 @@ class ResultadoListSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Resultado
         fields = '__all__'
+
+
+class EstafadoSerializer(serializers.HyperlinkedModelSerializer):
+    
+    class Meta:
+        model = Estafado
+        fields = ['nombre']
+        lookup_field='estafados'
+
+
+class CriptoSerializer(HyperlinkedModelSerializerWithId):
+    estafados = EstafadoSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Criptomoneda
+        fields = ['nombre', 'euros', 'estafados']

@@ -2,6 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import Atraccion, Bar, Comentario, Pelicula, Actor, Ingrediente, Resultado
+from .models import Criptomoneda, Estafado
 
 class ComentarioInline(admin.StackedInline):
     model = Comentario
@@ -38,3 +39,16 @@ class ResultadoAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Resultado, ResultadoAdmin)
+
+
+class EstafadoInline(admin.StackedInline):
+    model = Estafado
+    extra = 5
+
+
+class CriptoAdmin(admin.ModelAdmin):
+    model = Criptomoneda
+    inlines = [EstafadoInline]
+
+
+admin.site.register(Criptomoneda, CriptoAdmin)

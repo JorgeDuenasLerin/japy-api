@@ -63,3 +63,19 @@ class Resultado(models.Model):
 
     def __str__(self):
         return self.nombre
+
+
+class Criptomoneda(models.Model):
+    nombre = models.CharField(max_length=200)
+    euros = models.FloatField(default=0)
+
+    def __str__(self):
+        return self.nombre
+
+
+class Estafado(models.Model):
+    cripto = models.ForeignKey(Criptomoneda, on_delete=models.CASCADE, related_name='estafados')
+    nombre = models.CharField(max_length=200)
+    
+    def __str__(self):
+        return self.nombre
