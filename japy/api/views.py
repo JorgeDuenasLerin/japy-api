@@ -8,7 +8,7 @@ from rest_framework import filters
 import django_filters.rest_framework
 
 from .models import Bar, Atraccion, Comentario, Criptomoneda, Estafado
-from .models import Actor, Pelicula, Ingrediente, Resultado
+from .models import Actor, Pelicula, Ingrediente, Resultado, Cuadro
 from .serializers import BarSerializer, AtraccionListSerializer, AtraccionDetailSerializer, ComentarioSerializer, ResultadoListSerializer
 from .serializers import ActorSerializer, PeliculaDetailSerializer, PeliculaListSerializer, PeliculaListRelatedSerializer
 from .serializers import IngredienteListSerializer, IngredienteDetalleSerializer, CriptoSerializer, EstafadoSerializer
@@ -94,3 +94,16 @@ class EstafadoViewSet(viewsets.ModelViewSet):
 class CriptoViewSet(viewsets.ModelViewSet):
     queryset = Criptomoneda.objects.all()
     serializer_class = CriptoSerializer
+
+
+from .serializers import ListadoCuadroSerializer, DetalleCuadroSerializer
+
+class CuadroViewSet(viewsets.ModelViewSet):
+    queryset = Cuadro.objects.all()
+
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            return DetalleCuadroSerializer
+        else: 
+            return ListadoCuadroSerializer
+    

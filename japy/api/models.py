@@ -79,3 +79,15 @@ class Estafado(models.Model):
     
     def __str__(self):
         return self.nombre
+
+
+# Un modelo django para almacenar cuadros de arte con nombre del cuadro, precio, fecha de creación y técnica
+class Cuadro(models.Model):
+    nombre = models.CharField(max_length=200)
+    precio = models.FloatField(default=0)
+    fecha = models.DateTimeField('Creado')
+    tecnica = models.CharField(max_length=200)
+    color = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.nombre

@@ -103,3 +103,21 @@ class CriptoSerializer(HyperlinkedModelSerializerWithId):
     class Meta:
         model = Criptomoneda
         fields = ['nombre', 'euros', 'estafados']
+
+
+
+from .models import Cuadro
+
+class ListadoCuadroSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Cuadro
+        fields = ['id', 'nombre', 'precio']
+
+
+class DetalleCuadroSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Cuadro
+        fields = '__all__'
+
