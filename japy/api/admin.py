@@ -55,3 +55,7 @@ admin.site.register(Criptomoneda, CriptoAdmin)
 
 # registra el cuatro
 admin.site.register(Cuadro)
+
+from .models import Destino, ComentarioDestino
+admin.site.register(Destino)
+admin.site.register(ComentarioDestino)

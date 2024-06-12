@@ -107,3 +107,17 @@ class CuadroViewSet(viewsets.ModelViewSet):
         else: 
             return ListadoCuadroSerializer
     
+
+# los set de vistas para el modelo Destino
+from .models import Destino
+from .serializers import ListadoDestinoSerializer, DetalleDestinoSerializer
+
+class DestinoViewSet(viewsets.ModelViewSet):
+    queryset = Destino.objects.all()
+    serializer_class = ListadoDestinoSerializer
+
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            return DetalleDestinoSerializer
+        else: 
+            return ListadoDestinoSerializer

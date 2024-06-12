@@ -121,3 +121,32 @@ class DetalleCuadroSerializer(serializers.HyperlinkedModelSerializer):
         model = Cuadro
         fields = '__all__'
 
+
+# Serializador para mostrar el listado de modelo Destino
+from .models import Destino
+
+class ListadoDestinoSerializer(serializers.HyperlinkedModelSerializer):
+    
+    class Meta:
+        model = Destino
+        fields = ['id', 'nombre', 'precio', 'pais', 'ciudad']
+
+# Serializador para ComentarioDestino
+from .models import ComentarioDestino
+
+
+class ComentarioDestinoSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = ComentarioDestino
+        lookup_field = 'comentarios'
+        fields = ['texto']
+
+
+# Serializador para mostrar el detalle de modelo Destino con sus comentarios
+class DetalleDestinoSerializer(HyperlinkedModelSerializerWithId):
+    comentarios = ComentarioDestinoSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Destino
+        fields = ['id', 'nombre', 'precio', 'pais', 'ciudad', 'comentarios']

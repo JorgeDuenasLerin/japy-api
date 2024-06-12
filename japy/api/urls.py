@@ -1,7 +1,7 @@
 from rest_framework import routers
 from django.urls import path, include
 from .views import BarViewSet, AtraccionViewSet, ComentarioViewSet, PeliculaViewSet, ActorViewSet, IngredienteViewSet, ResultadoViewSet, PeliculaRelatedViewSet, CriptoViewSet, EstafadoViewSet, CuadroViewSet
-
+from .views import DestinoViewSet
 
 router = routers.DefaultRouter()
 router.register(r'bares', BarViewSet)
@@ -15,6 +15,7 @@ router.register(r'peliculas_related', PeliculaRelatedViewSet)
 router.register(r'cripto', CriptoViewSet)
 router.register(r'estafado', EstafadoViewSet)
 router.register(r'cuadro', CuadroViewSet)
+router.register(r'destino', DestinoViewSet)
 
 from . import views
 

@@ -91,3 +91,22 @@ class Cuadro(models.Model):
 
     def __str__(self):
         return self.nombre
+
+
+# Un modelo django para almacenar destinos turísticos con nombre del destino, precio
+class Destino(models.Model):
+    nombre = models.CharField(max_length=200)
+    precio = models.FloatField(default=0)
+    pais = models.CharField(max_length=200)
+    ciudad = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.nombre
+
+# Un modelo para comentar destinos turísticos
+class ComentarioDestino(models.Model):
+    destino = models.ForeignKey(Destino, on_delete=models.CASCADE, related_name='comentarios')
+    texto = models.CharField(max_length=200)
+    
+    def __str__(self):
+        return self.texto
